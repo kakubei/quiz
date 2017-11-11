@@ -14,6 +14,9 @@
 		CA6AFA841FB7136600F02E71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA6AFA821FB7136600F02E71 /* LaunchScreen.storyboard */; };
 		CA6AFA8F1FB7136600F02E71 /* QuizTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6AFA8E1FB7136600F02E71 /* QuizTests.swift */; };
 		CA6AFA9A1FB7174C00F02E71 /* AnswerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6AFA991FB7174C00F02E71 /* AnswerButton.swift */; };
+		CA6AFA9D1FB727D700F02E71 /* QuestionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6AFA9C1FB727D700F02E71 /* QuestionsModel.swift */; };
+		CA6AFAA01FB727EE00F02E71 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6AFA9F1FB727EE00F02E71 /* Question.swift */; };
+		CA708AC41FB72EA6000CAFF6 /* Colours.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA708AC31FB72EA6000CAFF6 /* Colours.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +41,9 @@
 		CA6AFA8E1FB7136600F02E71 /* QuizTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizTests.swift; sourceTree = "<group>"; };
 		CA6AFA901FB7136600F02E71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA6AFA991FB7174C00F02E71 /* AnswerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerButton.swift; sourceTree = "<group>"; };
+		CA6AFA9C1FB727D700F02E71 /* QuestionsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsModel.swift; sourceTree = "<group>"; };
+		CA6AFA9F1FB727EE00F02E71 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		CA708AC31FB72EA6000CAFF6 /* Colours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +91,7 @@
 				CA6AFA801FB7136600F02E71 /* Assets.xcassets */,
 				CA6AFA821FB7136600F02E71 /* LaunchScreen.storyboard */,
 				CA6AFA851FB7136600F02E71 /* Info.plist */,
-				CA6AFA991FB7174C00F02E71 /* AnswerButton.swift */,
+				CA6AFA9B1FB727C100F02E71 /* Models */,
 			);
 			path = Quiz;
 			sourceTree = "<group>";
@@ -97,6 +103,17 @@
 				CA6AFA901FB7136600F02E71 /* Info.plist */,
 			);
 			path = QuizTests;
+			sourceTree = "<group>";
+		};
+		CA6AFA9B1FB727C100F02E71 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CA6AFA991FB7174C00F02E71 /* AnswerButton.swift */,
+				CA6AFA9C1FB727D700F02E71 /* QuestionsModel.swift */,
+				CA6AFA9F1FB727EE00F02E71 /* Question.swift */,
+				CA708AC31FB72EA6000CAFF6 /* Colours.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,9 +219,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA6AFAA01FB727EE00F02E71 /* Question.swift in Sources */,
+				CA708AC41FB72EA6000CAFF6 /* Colours.swift in Sources */,
 				CA6AFA7C1FB7136600F02E71 /* ViewController.swift in Sources */,
 				CA6AFA7A1FB7136600F02E71 /* AppDelegate.swift in Sources */,
 				CA6AFA9A1FB7174C00F02E71 /* AnswerButton.swift in Sources */,
+				CA6AFA9D1FB727D700F02E71 /* QuestionsModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

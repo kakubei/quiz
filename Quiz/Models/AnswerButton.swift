@@ -9,7 +9,8 @@
 import UIKit
 
 class AnswerButton: UIButton {
-    var mark: String = "✓"
+    var mark: String = ""
+    var boolValue: Bool = true
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,6 +25,9 @@ class AnswerButton: UIButton {
     func commonInit() {
         self.setTitleColor(.white, for: .normal)
         self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 60)
+        // circular background
+        self.layer.cornerRadius = self.frame.width / 2
+        
         self.specificInit()
     }
     
@@ -33,16 +37,25 @@ class AnswerButton: UIButton {
     }
     
     func specificInit() {
-        self.backgroundColor = .green
+        self.backgroundColor = .black
         self.setTitle(self.mark, for: .normal)
     }
 }
 
+class TrueButton: AnswerButton {
+    override func specificInit() {
+        
+        self.backgroundColor = Colours.greenColour
+        self.setTitle("✓", for: .normal)        
+    }
+}
 
 class FalseButton: AnswerButton {
     
-    override func specificInit() {            
-        self.backgroundColor = .red
+    override func specificInit() {
+       
+        self.backgroundColor = Colours.redColour
         self.setTitle("X", for: .normal)
+        self.boolValue = false
     }
 }
