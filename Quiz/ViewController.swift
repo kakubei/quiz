@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var scoreLabel: UILabel!
     
     let questionsModel = QuestionsModel()
-    var currentQuestion: Questionable!
+    var currentQuestion: BoolQuestion!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,13 +32,13 @@ class ViewController: UIViewController {
     
     
     @IBAction func buttonTapped(_ sender: AnswerButton) {
-        let answer: Bool = (currentQuestion as! BoolQuestion).correctAnswer == sender.boolValue
+        let answer: Bool = currentQuestion.correctAnswer == sender.boolValue
         self.showAnswer(answer)
     }
     
     fileprivate func showAnswer(_ answer: Bool) {
-        let friendlyAnswer: String = answer ? "Correct 😀" : "Incorrect 😖"
-        print("answer:", friendlyAnswer)
+        let answer = self.currentQuestion.showAnswer(for: answer)
+        print("answer:", answer)
     }
     
 }
