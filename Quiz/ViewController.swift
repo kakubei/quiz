@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Cartography
 
 class ViewController: UIViewController {
 
@@ -17,6 +18,7 @@ class ViewController: UIViewController {
     
     let questionsModel = QuestionsModel()
     var currentQuestion: BoolQuestion!
+    // TODO: Remove this as instance variable. We justa have it so I can dismiss with tap!
     let answerView = UIView()
     
     override func viewDidLoad() {
@@ -39,31 +41,46 @@ class ViewController: UIViewController {
     
     fileprivate func showAnswer(_ answer: Bool) {
         let friendlyAnswer = self.currentQuestion.showAnswer(for: answer)
-        print("answer:", friendlyAnswer)
         
         self.configureAnswerView(with: friendlyAnswer)
     }
     
     private func configureAnswerView(with answer: String) {
+        // TODO: Put all this into a model file!
         
         let answerLabel = UILabel()
         answerLabel.text = answer
-        
-        
-        self.answerView.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(self.answerView)
-        self.answerView.addSubview(answerLabel)
         answerLabel.adjustsFontSizeToFitWidth = true
+        answerLabel.textAlignment = .center
+        answerLabel.font = answerLabel.font.withSize(100)
         
-        self.answerView.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: -60).isActive = true
-        self.answerView.heightAnchor.constraint(equalTo: self.view.heightAnchor, constant: -200).isActive = true
-        self.answerView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        self.answerView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        answerView.backgroundColor = UIColor(white: 0.7, alpha: 0.8)
         
-        answerLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
-        answerLabel.heightAnchor.constraint(equalToConstant: 200).isActive = true
-        answerLabel.centerXAnchor.constraint(equalTo: self.answerView.centerXAnchor).isActive = true
-        answerLabel.centerYAnchor.constraint(equalTo: self.answerView.centerYAnchor).isActive = true
+        self.view.addSubview(answerView)
+        answerView.addSubview(answerLabel)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissView))
+        answerView.addGestureRecognizer(tapGesture)
+        
+        let preferredWidth: CGFloat = 350
+        
+        constrain(self.view, answerView, answerLabel) { superview, answerView, answerLabel in
+            answerView.width == preferredWidth
+            answerView.height == preferredWidth
+            answerView.centerX == superview.centerX
+            answerView.centerY == superview.centerY
+            
+            answerLabel.width == answerView.width
+            answerLabel.height == answerView.height
+            answerLabel.centerX == answerView.centerX
+            answerLabel.centerY == answerView.centerY
+        }
+        
+        answerView.layer.cornerRadius = 50
+    }
+    
+    @objc func dismissView() {
+        self.answerView.removeFromSuperview()
     }
     
 }
