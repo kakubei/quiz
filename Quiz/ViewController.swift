@@ -10,16 +10,27 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var questionLabel: UILabel!
+    @IBOutlet weak var trueButton: AnswerButton!
+    @IBOutlet weak var falseButton: FalseButton!
+    @IBOutlet weak var scoreLabel: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+       
+        self.configureUI()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    // TODO: Move this to a model
+    private func configureUI() {
+        
     }
-
-
+    
+    
+    @IBAction func buttonTapped(_ sender: UIButton) {
+        // Use sender class (casting it) to determine right or wrong answer
+    }
+    
 }
 

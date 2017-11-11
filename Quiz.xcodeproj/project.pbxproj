@@ -13,6 +13,7 @@
 		CA6AFA811FB7136600F02E71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA6AFA801FB7136600F02E71 /* Assets.xcassets */; };
 		CA6AFA841FB7136600F02E71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA6AFA821FB7136600F02E71 /* LaunchScreen.storyboard */; };
 		CA6AFA8F1FB7136600F02E71 /* QuizTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6AFA8E1FB7136600F02E71 /* QuizTests.swift */; };
+		CA6AFA9A1FB7174C00F02E71 /* AnswerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6AFA991FB7174C00F02E71 /* AnswerButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		CA6AFA8A1FB7136600F02E71 /* QuizTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuizTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA6AFA8E1FB7136600F02E71 /* QuizTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizTests.swift; sourceTree = "<group>"; };
 		CA6AFA901FB7136600F02E71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CA6AFA991FB7174C00F02E71 /* AnswerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				CA6AFA801FB7136600F02E71 /* Assets.xcassets */,
 				CA6AFA821FB7136600F02E71 /* LaunchScreen.storyboard */,
 				CA6AFA851FB7136600F02E71 /* Info.plist */,
+				CA6AFA991FB7174C00F02E71 /* AnswerButton.swift */,
 			);
 			path = Quiz;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 			files = (
 				CA6AFA7C1FB7136600F02E71 /* ViewController.swift in Sources */,
 				CA6AFA7A1FB7136600F02E71 /* AppDelegate.swift in Sources */,
+				CA6AFA9A1FB7174C00F02E71 /* AnswerButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,6 +300,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -345,6 +350,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
