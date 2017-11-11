@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     
     let questionsModel = QuestionsModel()
     var currentQuestion: BoolQuestion!
-    let answerView = AnswerView()
+    let answerView = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,14 +46,24 @@ class ViewController: UIViewController {
     
     private func configureAnswerView(with answer: String) {
         
-        self.answerView.answerString = answer
+        let answerLabel = UILabel()
+        answerLabel.text = answer
+        
+        
         self.answerView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(self.answerView)
+        self.answerView.addSubview(answerLabel)
+        answerLabel.adjustsFontSizeToFitWidth = true
         
         self.answerView.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: -60).isActive = true
         self.answerView.heightAnchor.constraint(equalTo: self.view.heightAnchor, constant: -200).isActive = true
         self.answerView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         self.answerView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        
+        answerLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        answerLabel.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        answerLabel.centerXAnchor.constraint(equalTo: self.answerView.centerXAnchor).isActive = true
+        answerLabel.centerYAnchor.constraint(equalTo: self.answerView.centerYAnchor).isActive = true
     }
     
 }
