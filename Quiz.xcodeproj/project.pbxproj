@@ -17,6 +17,7 @@
 		CA6AFA9D1FB727D700F02E71 /* QuestionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6AFA9C1FB727D700F02E71 /* QuestionsModel.swift */; };
 		CA6AFAA01FB727EE00F02E71 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6AFA9F1FB727EE00F02E71 /* Question.swift */; };
 		CA708AC41FB72EA6000CAFF6 /* Colours.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA708AC31FB72EA6000CAFF6 /* Colours.swift */; };
+		CA708AC61FB74577000CAFF6 /* AnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA708AC51FB74577000CAFF6 /* AnswerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		CA6AFA9C1FB727D700F02E71 /* QuestionsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsModel.swift; sourceTree = "<group>"; };
 		CA6AFA9F1FB727EE00F02E71 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		CA708AC31FB72EA6000CAFF6 /* Colours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
+		CA708AC51FB74577000CAFF6 /* AnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				CA6AFA9C1FB727D700F02E71 /* QuestionsModel.swift */,
 				CA6AFA9F1FB727EE00F02E71 /* Question.swift */,
 				CA708AC31FB72EA6000CAFF6 /* Colours.swift */,
+				CA708AC51FB74577000CAFF6 /* AnswerView.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -221,6 +224,7 @@
 			files = (
 				CA6AFAA01FB727EE00F02E71 /* Question.swift in Sources */,
 				CA708AC41FB72EA6000CAFF6 /* Colours.swift in Sources */,
+				CA708AC61FB74577000CAFF6 /* AnswerView.swift in Sources */,
 				CA6AFA7C1FB7136600F02E71 /* ViewController.swift in Sources */,
 				CA6AFA7A1FB7136600F02E71 /* AppDelegate.swift in Sources */,
 				CA6AFA9A1FB7174C00F02E71 /* AnswerButton.swift in Sources */,

@@ -29,7 +29,7 @@ protocol Questionable {
 protocol BoolQuestionable: Questionable {
     var correctAnswer: Bool { get }
     func validateAnswer(_ answer: Bool) -> Bool
-    func showAnswer(for answer: Bool) -> String
+    func showAnswer(for answer: Bool, friendly: Bool) -> String
 }
 
 struct BoolQuestion: BoolQuestionable {
@@ -41,9 +41,10 @@ struct BoolQuestion: BoolQuestionable {
         return self.correctAnswer == answer
     }
     
-    func showAnswer(for answer: Bool) -> String {
+    // We can show friendly faces answer or just the text
+    func showAnswer(for answer: Bool, friendly: Bool = true) -> String {
         let answerString: AnswerString = self.correctAnswer == answer ? .correct : .incorrect
-        return answerString.friendly
+        return friendly ? answerString.friendly : answerString.rawValue
     }
 }
 

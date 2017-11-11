@@ -32,7 +32,6 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eyk-H3-K2c" customClass="TrueButton" customModule="Quiz" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="140" height="140"/>
-                                                <color key="backgroundColor" red="0.8175695538520813" green="0.92258667945861816" blue="0.59217661619186401" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="140" id="Ech-Vn-4sg"/>
                                                     <constraint firstAttribute="height" constant="140" id="XDa-IW-ePg"/>
@@ -85,6 +84,29 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="3bX-0C-Pjk" customClass="AnswerView" customModule="Quiz" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😖" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="5hw-hr-Q4q">
+                            <rect key="frame" x="10" y="10" width="220" height="108"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.8175695538520813" green="0.92258667945861816" blue="0.59217661619186401" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="5hw-hr-Q4q" firstAttribute="top" secondItem="ALI-0J-CQF" secondAttribute="top" constant="10" id="4WJ-0u-ZWb"/>
+                        <constraint firstItem="5hw-hr-Q4q" firstAttribute="leading" secondItem="ALI-0J-CQF" secondAttribute="leading" constant="10" id="KQb-Ub-Sjr"/>
+                        <constraint firstItem="ALI-0J-CQF" firstAttribute="bottom" secondItem="5hw-hr-Q4q" secondAttribute="bottom" constant="10" id="iwH-j1-WuO"/>
+                        <constraint firstItem="ALI-0J-CQF" firstAttribute="trailing" secondItem="5hw-hr-Q4q" secondAttribute="trailing" constant="10" id="nfk-cI-NkY"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="ALI-0J-CQF"/>
+                    <connections>
+                        <outlet property="answerLabel" destination="5hw-hr-Q4q" id="4Bs-cY-mIz"/>
+                    </connections>
+                </view>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="132.68365817091455"/>
         </scene>
