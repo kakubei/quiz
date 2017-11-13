@@ -8,6 +8,8 @@
 
 import UIKit
 import Cartography
+import Bond
+import ReactiveKit
 
 class ViewController: UIViewController {
 
@@ -16,10 +18,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var falseButton: FalseButton!
     @IBOutlet weak var scoreLabel: UILabel!
     
+    @IBOutlet weak var answerView: AnswerView!
+    
     let questionsModel = QuestionsModel()
     var currentQuestion: BoolQuestion!
-    // TODO: Remove this as instance variable. We justa have it so I can dismiss with tap!
-    let answerView = UIView()
+    // TODO: Remove this as instance variable. We just have it so I can dismiss with tap!
+    var tap = UITapGestureRecognizer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,57 +35,94 @@ class ViewController: UIViewController {
     private func configureUI() {
         self.currentQuestion = self.questionsModel.boolQuestions.first
         self.questionLabel.text = currentQuestion?.question
+        
+        self.addSwipe()
+//        self.tap = UITapGestureRecognizer(target: self, action: #selector(dismissView))
+//        self.view.addGestureRecognizer(self.tap)
+//        self.questionLabel.reactive.text.bind(signal: self.currentQuestion.question.reactive)
+    }
+    
+    private func addSwipe() {
+        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(nextQuestion))
+        swipe.direction = .left
+        self.view.addGestureRecognizer(swipe)
     }
     
     
     @IBAction func buttonTapped(_ sender: AnswerButton) {
-        let answer: Bool = currentQuestion.correctAnswer == sender.boolValue
+        let answer: Bool = currentQuestion?.correctAnswer == sender.boolValue
         self.showAnswer(answer)
     }
     
     fileprivate func showAnswer(_ answer: Bool) {
-        let friendlyAnswer = self.currentQuestion.showAnswer(for: answer)
-        
-        self.configureAnswerView(with: friendlyAnswer)
-    }
-    
-    private func configureAnswerView(with answer: String) {
-        // TODO: Put all this into a model file!
-        
-        let answerLabel = UILabel()
-        answerLabel.text = answer
-        answerLabel.adjustsFontSizeToFitWidth = true
-        answerLabel.textAlignment = .center
-        answerLabel.font = answerLabel.font.withSize(100)
-        
-        answerView.backgroundColor = UIColor(white: 0.7, alpha: 0.8)
-        
-        self.view.addSubview(answerView)
-        answerView.addSubview(answerLabel)
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissView))
-        answerView.addGestureRecognizer(tapGesture)
-        
-        let preferredWidth: CGFloat = 350
-        
-        constrain(self.view, answerView, answerLabel) { superview, answerView, answerLabel in
-            answerView.width == preferredWidth
-            answerView.height == preferredWidth
-            answerView.centerX == superview.centerX
-            answerView.centerY == superview.centerY
-            
-            answerLabel.width == answerView.width
-            answerLabel.height == answerView.height
-            answerLabel.centerX == answerView.centerX
-            answerLabel.centerY == answerView.centerY
+        guard let friendlyAnswer = self.currentQuestion?.showAnswer(for: answer) else {
+            return
         }
         
-        answerView.layer.cornerRadius = 50
+        self.answerView.configureAnswerView(with: friendlyAnswer)
     }
     
-    @objc func dismissView() {
-        self.answerView.removeFromSuperview()
+    @objc private func nextQuestion() {
+        if self.questionsModel.isLastQuestion(currentQuestion) {
+            return
+        }
+        
+        guard let index = self.questionsModel.boolQuestions.index(of: currentQuestion) else {
+            return
+        }
+        
+        let nextIndex = index + 1
+        self.showQuestionWithIndex(nextIndex)
     }
+    
+    private func showQuestionWithIndex(_ nextIndex: Int) {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.questionLabel.alpha = 0
+        }, completion: { _ in
+            UIView.animate(withDuration: 0.5, animations: {
+                self.questionLabel.text = self.questionsModel.boolQuestions[nextIndex].question
+                self.questionLabel.alpha = 1.0
+            })
+        })
+    }
+    
+//    private func configureAnswerView(with answer: String) {
+//        // TODO: Put all this into a model file!
+//
+//        let answerLabel = UILabel()
+//        answerLabel.text = answer
+//        answerLabel.adjustsFontSizeToFitWidth = true
+//        answerLabel.textAlignment = .center
+//        answerLabel.font = answerLabel.font.withSize(100)
+//
+//        answerView.backgroundColor = UIColor(white: 0.7, alpha: 1.0)
+//
+//        self.view.addSubview(answerView)
+//        answerView.addSubview(answerLabel)
+//
+////        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissView))
+//        answerView.addGestureRecognizer(self.tap)
+//
+//        let preferredWidth: CGFloat = 350
+//
+//        constrain(self.view, answerView, answerLabel) { superview, answerView, answerLabel in
+//            answerView.width == preferredWidth
+//            answerView.height == preferredWidth
+//            answerView.centerX == superview.centerX
+//            answerView.centerY == superview.centerY
+//
+//            answerLabel.width == answerView.width
+//            answerLabel.height == answerView.height
+//            answerLabel.centerX == answerView.centerX
+//            answerLabel.centerY == answerView.centerY
+//        }
+//
+//        answerView.layer.cornerRadius = 50
+//    }
+    
+//    @objc func dismissView() {
+//        self.answerView.removeFromSuperview()
+//    }
     
 }
 

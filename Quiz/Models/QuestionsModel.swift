@@ -24,5 +24,11 @@ struct QuestionsModel {
         [firstQuestion, thirdQuestion].forEach { question in
             self.boolQuestions.append(question)
         }        
-    }    
+    }
+    
+    func isLastQuestion(_ currentQuestion: BoolQuestion) -> Bool {
+        let index = self.boolQuestions.index(of: currentQuestion)
+        let allQuestionsViewed = index == (self.boolQuestions.count - 1)
+        return allQuestionsViewed
+    }
 }

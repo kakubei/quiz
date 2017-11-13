@@ -48,6 +48,12 @@ struct BoolQuestion: BoolQuestionable {
     }
 }
 
+extension BoolQuestion: Equatable { }
+
+func ==(lhs: BoolQuestion, rhs: BoolQuestion) -> Bool {
+    return lhs.question == rhs.question
+}
+
 // TODO: Use Generics for this, instead of Quiestonable item, have a generic item
 //protocol MultipleQuestionable {
 //    var correctAnswer: String { get }

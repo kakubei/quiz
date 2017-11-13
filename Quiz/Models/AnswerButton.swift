@@ -28,22 +28,15 @@ class AnswerButton: UIButton {
         // circular background
         self.layer.cornerRadius = self.frame.width / 2
         
-        self.specificInit()
-    }
-    
-    convenience init?(mark: String) {
-        self.init(coder: NSCoder())
-        self.commonInit()
-    }
-    
-    func specificInit() {
         self.backgroundColor = .black
         self.setTitle(self.mark, for: .normal)
     }
+
 }
 
 class TrueButton: AnswerButton {
-    override func specificInit() {
+    override func commonInit() {
+        super.commonInit()
         
         self.backgroundColor = Colours.greenColour
         self.setTitle("✓", for: .normal)        
@@ -52,8 +45,8 @@ class TrueButton: AnswerButton {
 
 class FalseButton: AnswerButton {
     
-    override func specificInit() {
-       
+    override func commonInit() {
+        super.commonInit()
         self.backgroundColor = Colours.redColour
         self.setTitle("X", for: .normal)
         self.boolValue = false
