@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1A8FF17C812C1B6EFBC8FCF1 /* Pods_Quiz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D5C26F87936FF799CEF7659 /* Pods_Quiz.framework */; };
+		CA0B31A91FB9A0CD00EA73DE /* AnswerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0B31A81FB9A0CD00EA73DE /* AnswerView.xib */; };
+		CA4A90151FBAF22000B97C31 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4A90141FBAF22000B97C31 /* UIViewExtension.swift */; };
 		CA6AFA7A1FB7136600F02E71 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6AFA791FB7136600F02E71 /* AppDelegate.swift */; };
 		CA6AFA7C1FB7136600F02E71 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6AFA7B1FB7136600F02E71 /* ViewController.swift */; };
 		CA6AFA7F1FB7136600F02E71 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA6AFA7D1FB7136600F02E71 /* Main.storyboard */; };
@@ -39,6 +41,8 @@
 		6D5C26F87936FF799CEF7659 /* Pods_Quiz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Quiz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		963A6D169273E329F9575D98 /* Pods-QuizTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuizTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QuizTests/Pods-QuizTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ABB2A436D454B7D3A9D7A16E /* Pods-Quiz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quiz.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Quiz/Pods-Quiz.debug.xcconfig"; sourceTree = "<group>"; };
+		CA0B31A81FB9A0CD00EA73DE /* AnswerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnswerView.xib; sourceTree = "<group>"; };
+		CA4A90141FBAF22000B97C31 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		CA6AFA761FB7136600F02E71 /* Quiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA6AFA791FB7136600F02E71 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CA6AFA7B1FB7136600F02E71 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +100,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		CA0B31A71FB9A0BC00EA73DE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CA0B31A81FB9A0CD00EA73DE /* AnswerView.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		CA6AFA6D1FB7136600F02E71 = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +131,7 @@
 		CA6AFA781FB7136600F02E71 /* Quiz */ = {
 			isa = PBXGroup;
 			children = (
+				CA0B31A71FB9A0BC00EA73DE /* Views */,
 				CA6AFA791FB7136600F02E71 /* AppDelegate.swift */,
 				CA6AFA7B1FB7136600F02E71 /* ViewController.swift */,
 				CA6AFA7D1FB7136600F02E71 /* Main.storyboard */,
@@ -126,6 +139,7 @@
 				CA6AFA821FB7136600F02E71 /* LaunchScreen.storyboard */,
 				CA6AFA851FB7136600F02E71 /* Info.plist */,
 				CA6AFA9B1FB727C100F02E71 /* Models */,
+				CA4A90141FBAF22000B97C31 /* UIViewExtension.swift */,
 			);
 			path = Quiz;
 			sourceTree = "<group>";
@@ -242,6 +256,7 @@
 			files = (
 				CA6AFA841FB7136600F02E71 /* LaunchScreen.storyboard in Resources */,
 				CA6AFA811FB7136600F02E71 /* Assets.xcassets in Resources */,
+				CA0B31A91FB9A0CD00EA73DE /* AnswerView.xib in Resources */,
 				CA6AFA7F1FB7136600F02E71 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -263,12 +278,18 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Quiz/Pods-Quiz-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bond/Bond.framework",
 				"${BUILT_PRODUCTS_DIR}/Cartography/Cartography.framework",
+				"${BUILT_PRODUCTS_DIR}/Differ/Differ.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveKit/ReactiveKit.framework",
 				"${PODS_ROOT}/Reveal-SDK/RevealServer-10/iOS/RevealServer.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bond.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cartography.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differ.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RevealServer.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -370,6 +391,7 @@
 				CA6AFA7C1FB7136600F02E71 /* ViewController.swift in Sources */,
 				CA6AFA7A1FB7136600F02E71 /* AppDelegate.swift in Sources */,
 				CA6AFA9A1FB7174C00F02E71 /* AnswerButton.swift in Sources */,
+				CA4A90151FBAF22000B97C31 /* UIViewExtension.swift in Sources */,
 				CA6AFA9D1FB727D700F02E71 /* QuestionsModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -460,7 +482,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -512,7 +534,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -527,8 +549,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = J6K396NRDW;
+				DEVELOPMENT_TEAM = 3LLJD45TH9;
 				INFOPLIST_FILE = Quiz/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexDearden.Quiz;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -543,8 +566,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = J6K396NRDW;
+				DEVELOPMENT_TEAM = 3LLJD45TH9;
 				INFOPLIST_FILE = Quiz/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexDearden.Quiz;
 				PRODUCT_NAME = "$(TARGET_NAME)";

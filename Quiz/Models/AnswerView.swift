@@ -12,7 +12,6 @@ import Cartography
 class AnswerView: UIView {
     
     @IBOutlet weak var answerLabel: UILabel!    
-    @IBOutlet var tapGesture: UITapGestureRecognizer!
     
 //    var answerString: String? {
 //        didSet {
@@ -29,7 +28,12 @@ class AnswerView: UIView {
 //    }
     
     private func configureUI() {
-        self.tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissView))
+        // This uses the IBOutlet added from the Storyboard
+//        self.tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissView))
+        
+        // This uses the UIView extension
+        self.addTapGesureHandler(target: self, action: #selector(dismissView))
+        
         answerLabel.font = answerLabel.font.withSize(100)
         self.answerLabel.adjustsFontSizeToFitWidth = true
         self.layer.cornerRadius = 50

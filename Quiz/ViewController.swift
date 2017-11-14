@@ -11,7 +11,7 @@ import Cartography
 import Bond
 import ReactiveKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, Dismissable {
 
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var trueButton: TrueButton!
@@ -22,8 +22,6 @@ class ViewController: UIViewController {
     
     let questionsModel = QuestionsModel()
     var currentQuestion: BoolQuestion!
-    // TODO: Remove this as instance variable. We just have it so I can dismiss with tap!
-    var tap = UITapGestureRecognizer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,16 +34,13 @@ class ViewController: UIViewController {
         self.currentQuestion = self.questionsModel.boolQuestions.first
         self.questionLabel.text = currentQuestion?.question
         
-        self.addSwipe()
-//        self.tap = UITapGestureRecognizer(target: self, action: #selector(dismissView))
-//        self.view.addGestureRecognizer(self.tap)
-//        self.questionLabel.reactive.text.bind(signal: self.currentQuestion.question.reactive)
-    }
+        self.view.addTapGesureHandler(target: self, action: #selector(dismissView))
+        
+        self.view.addSwipeLeftGestureHandler(target: self, action: #selector(nextQuestion))
+    }    
     
-    private func addSwipe() {
-        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(nextQuestion))
-        swipe.direction = .left
-        self.view.addGestureRecognizer(swipe)
+    private func dismissView() {
+        self.answerView.dismissView()
     }
     
     
