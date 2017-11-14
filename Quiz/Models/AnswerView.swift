@@ -11,7 +11,7 @@ import Cartography
 
 class AnswerView: UIView {
     
-    @IBOutlet weak var answerLabel: UILabel!    
+//    @IBOutlet weak var answerLabel: UILabel!
     
 //    var answerString: String? {
 //        didSet {
@@ -21,38 +21,33 @@ class AnswerView: UIView {
 //            answerLabel.text = answerString
 //        }
 //    }
-    
-    
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//    }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        self.configureUI()
+    }
     
     private func configureUI() {
-        // This uses the IBOutlet added from the Storyboard
-//        self.tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissView))
-        
         // This uses the UIView extension
-        self.addTapGesureHandler(target: self, action: #selector(dismissView))
+        self.addTapGestureHandler(target: self, action: #selector(dismissView))
         
-        answerLabel.font = answerLabel.font.withSize(100)
-        self.answerLabel.adjustsFontSizeToFitWidth = true
         self.layer.cornerRadius = 50
     }
     
      func configureAnswerView(with answer: String) {
         self.isHidden = false
         
+        let answerLabel = UILabel()
+        
         answerLabel.text = answer
-//        answerLabel.adjustsFontSizeToFitWidth = true
-//        answerLabel.textAlignment = .center
+        answerLabel.font = answerLabel.font.withSize(100)
+        answerLabel.textAlignment = .center
        
         
-//        self.backgroundColor = UIColor(white: 0.7, alpha: 1.0)
+        self.backgroundColor = UIColor(white: 0.7, alpha: 1.0)
         
-//        self.addSubview(answerLabel)
-        
-        
-//        self.addGestureRecognizer(tapGesture)
+        self.addSubview(answerLabel)
         
         let preferredWidth: CGFloat = 350
         

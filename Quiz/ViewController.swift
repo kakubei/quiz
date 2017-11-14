@@ -8,8 +8,6 @@
 
 import UIKit
 import Cartography
-import Bond
-import ReactiveKit
 
 class ViewController: UIViewController, Dismissable {
 
@@ -34,12 +32,12 @@ class ViewController: UIViewController, Dismissable {
         self.currentQuestion = self.questionsModel.boolQuestions.first
         self.questionLabel.text = currentQuestion?.question
         
-        self.view.addTapGesureHandler(target: self, action: #selector(dismissView))
+        self.view.addTapGestureHandler(target: self, action: #selector(dismissView))
         
         self.view.addSwipeLeftGestureHandler(target: self, action: #selector(nextQuestion))
     }    
     
-    private func dismissView() {
+    @objc func dismissView() {
         self.answerView.dismissView()
     }
     
@@ -79,45 +77,7 @@ class ViewController: UIViewController, Dismissable {
                 self.questionLabel.alpha = 1.0
             })
         })
-    }
-    
-//    private func configureAnswerView(with answer: String) {
-//        // TODO: Put all this into a model file!
-//
-//        let answerLabel = UILabel()
-//        answerLabel.text = answer
-//        answerLabel.adjustsFontSizeToFitWidth = true
-//        answerLabel.textAlignment = .center
-//        answerLabel.font = answerLabel.font.withSize(100)
-//
-//        answerView.backgroundColor = UIColor(white: 0.7, alpha: 1.0)
-//
-//        self.view.addSubview(answerView)
-//        answerView.addSubview(answerLabel)
-//
-////        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissView))
-//        answerView.addGestureRecognizer(self.tap)
-//
-//        let preferredWidth: CGFloat = 350
-//
-//        constrain(self.view, answerView, answerLabel) { superview, answerView, answerLabel in
-//            answerView.width == preferredWidth
-//            answerView.height == preferredWidth
-//            answerView.centerX == superview.centerX
-//            answerView.centerY == superview.centerY
-//
-//            answerLabel.width == answerView.width
-//            answerLabel.height == answerView.height
-//            answerLabel.centerX == answerView.centerX
-//            answerLabel.centerY == answerView.centerY
-//        }
-//
-//        answerView.layer.cornerRadius = 50
-//    }
-    
-//    @objc func dismissView() {
-//        self.answerView.removeFromSuperview()
-//    }
+    }    
     
 }
 

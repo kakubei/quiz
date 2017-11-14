@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 extension UIView {
-    @discardableResult public func addTapGesureHandler(target: Any, action: Selector) -> Self {
+    @discardableResult public func addTapGestureHandler(target: Any, action: Selector) -> Self {
         self.isUserInteractionEnabled = true
         self.addGestureRecognizer(UITapGestureRecognizer(target: target, action: action))
         return self
