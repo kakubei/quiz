@@ -30,7 +30,7 @@ class AnswerView: UIView {
         answerLabel.font = answerLabel.font.withSize(100)
         answerLabel.textAlignment = .center
        
-        
+        // TODO: Change background colour depending on right or wrong answer. Use the Enum for this.
         self.backgroundColor = UIColor(white: 0.7, alpha: 1.0)
         
         self.addSubview(answerLabel)

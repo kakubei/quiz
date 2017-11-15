@@ -10,6 +10,7 @@
 		1A8FF17C812C1B6EFBC8FCF1 /* Pods_Quiz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D5C26F87936FF799CEF7659 /* Pods_Quiz.framework */; };
 		CA0B31A91FB9A0CD00EA73DE /* AnswerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0B31A81FB9A0CD00EA73DE /* AnswerView.xib */; };
 		CA11701C1FBB58B6007C0113 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA11701B1FBB58B6007C0113 /* DateExtension.swift */; };
+		CA30C84D1FBCA3C30026869F /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA30C84C1FBCA3C30026869F /* ScoreViewController.swift */; };
 		CA4A90151FBAF22000B97C31 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4A90141FBAF22000B97C31 /* UIViewExtension.swift */; };
 		CA6AFA7A1FB7136600F02E71 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6AFA791FB7136600F02E71 /* AppDelegate.swift */; };
 		CA6AFA7C1FB7136600F02E71 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6AFA7B1FB7136600F02E71 /* ViewController.swift */; };
@@ -44,6 +45,7 @@
 		ABB2A436D454B7D3A9D7A16E /* Pods-Quiz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quiz.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Quiz/Pods-Quiz.debug.xcconfig"; sourceTree = "<group>"; };
 		CA0B31A81FB9A0CD00EA73DE /* AnswerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnswerView.xib; sourceTree = "<group>"; };
 		CA11701B1FBB58B6007C0113 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		CA30C84C1FBCA3C30026869F /* ScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
 		CA4A90141FBAF22000B97C31 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		CA6AFA761FB7136600F02E71 /* Quiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA6AFA791FB7136600F02E71 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +121,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		CA30C84B1FBCA3AD0026869F /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CA6AFA7B1FB7136600F02E71 /* ViewController.swift */,
+				CA30C84C1FBCA3C30026869F /* ScoreViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
 		CA6AFA6D1FB7136600F02E71 = {
 			isa = PBXGroup;
 			children = (
@@ -144,7 +155,7 @@
 			children = (
 				CA0B31A71FB9A0BC00EA73DE /* Views */,
 				CA6AFA791FB7136600F02E71 /* AppDelegate.swift */,
-				CA6AFA7B1FB7136600F02E71 /* ViewController.swift */,
+				CA30C84B1FBCA3AD0026869F /* View Controllers */,
 				CA6AFA7D1FB7136600F02E71 /* Main.storyboard */,
 				CA6AFA801FB7136600F02E71 /* Assets.xcassets */,
 				CA6AFA821FB7136600F02E71 /* LaunchScreen.storyboard */,
@@ -397,6 +408,7 @@
 				CA11701C1FBB58B6007C0113 /* DateExtension.swift in Sources */,
 				CA6AFA7A1FB7136600F02E71 /* AppDelegate.swift in Sources */,
 				CA6AFA9A1FB7174C00F02E71 /* AnswerButton.swift in Sources */,
+				CA30C84D1FBCA3C30026869F /* ScoreViewController.swift in Sources */,
 				CA4A90151FBAF22000B97C31 /* UIViewExtension.swift in Sources */,
 				CA6AFA9D1FB727D700F02E71 /* QuestionsModel.swift in Sources */,
 			);

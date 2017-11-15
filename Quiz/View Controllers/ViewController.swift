@@ -14,7 +14,7 @@ class ViewController: UIViewController, Dismissable {
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var trueButton: TrueButton!
     @IBOutlet weak var falseButton: FalseButton!
-    @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var totalQuestionsLabel: UILabel!
     
     @IBOutlet weak var answerView: AnswerView!
     
@@ -24,6 +24,8 @@ class ViewController: UIViewController, Dismissable {
             self.questionLabel.text = currentQuestion.question
         }
     }
+    
+    let scoreSegue = "ShowScoreSegue"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,11 +38,16 @@ class ViewController: UIViewController, Dismissable {
         self.currentQuestion = self.questionsModel.boolQuestions.first
         
         self.view.addTapGestureHandler(target: self, action: #selector(dismissView))
-        
         self.view.addSwipeLeftGestureHandler(target: self, action: #selector(nextQuestion))
+        
+        self.totalQuestionsLabel.text = self.questionsModel.currentQuestionLabel(index: 0)
     }    
     
     @objc func dismissView() {
+        // TODO: Don't advance to next question unless user has answered
+        guard self.currentQuestion.answered else {
+            return
+        }
         self.nextQuestion()
         self.answerView.isHidden = true
     }
@@ -48,7 +55,20 @@ class ViewController: UIViewController, Dismissable {
     
     @IBAction func buttonTapped(_ sender: AnswerButton) {
         let answer: Bool = currentQuestion?.correctAnswer == sender.boolValue
+        self.currentQuestion.answered = true
+        self.questionsModel.updateScore(withAnswer: answer)
+        
         self.showAnswer(answer)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == scoreSegue {
+            guard let destinationVC = segue.destination as? ScoreViewController else {
+                return
+            }
+            
+            destinationVC.score = self.questionsModel.scorePercentage
+        }
     }
     
     fileprivate func showAnswer(_ answer: Bool) {
@@ -61,12 +81,15 @@ class ViewController: UIViewController, Dismissable {
     
     @objc private func nextQuestion() {
         if self.questionsModel.isLastQuestion(currentQuestion) {
+            performSegue(withIdentifier: scoreSegue, sender: self)
             return
         }
         
         guard let index = self.questionsModel.boolQuestions.index(of: currentQuestion) else {
             return
         }
+        
+        self.totalQuestionsLabel.text = self.questionsModel.currentQuestionLabel(index: index)
         
         let nextIndex = index + 1
         self.showQuestionWithIndex(nextIndex)
@@ -75,10 +98,13 @@ class ViewController: UIViewController, Dismissable {
     private func showQuestionWithIndex(_ nextIndex: Int) {
         UIView.animate(withDuration: 0.3, animations: {
             self.questionLabel.alpha = 0
+            self.totalQuestionsLabel.alpha = 0
         }, completion: { _ in
             UIView.animate(withDuration: 0.5, animations: {
                 self.currentQuestion = self.questionsModel.boolQuestions[nextIndex]
+                self.totalQuestionsLabel.text = self.questionsModel.currentQuestionLabel(index: nextIndex)
                 self.questionLabel.alpha = 1.0
+                self.totalQuestionsLabel.alpha = 1.0
             })
         })
     }    

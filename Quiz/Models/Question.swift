@@ -36,6 +36,12 @@ struct BoolQuestion: BoolQuestionable {
     let question: String
     let type: QuestionType = .bool
     let correctAnswer: Bool
+    var answered: Bool = false
+    
+    init(question: String, correctAnswer: Bool) {
+        self.question = question
+        self.correctAnswer = correctAnswer
+    }
     
     func validateAnswer(_ answer: Bool) -> Bool {
         return self.correctAnswer == answer
