@@ -143,8 +143,12 @@ extension Date {
     }
     
     // Pass positive or negative integer
-    public func offsetBy(hours: Int) -> Date {
-        let offsetDate: Date = Calendar.current.date(byAdding: .hour, value: hours, to: self)!
+    // TODO: Refactor so I can pass both days and hours
+    public func offsetBy(days: Int = 0, hours: Int = 0) -> Date {
+        let component: Calendar.Component = days > 0 ? .day : .hour
+        let valueToCalculate: Int = days > 0 ? days : hours
+        
+        let offsetDate: Date = Calendar.current.date(byAdding: component, value: valueToCalculate, to: self)!
         return offsetDate
     }
     

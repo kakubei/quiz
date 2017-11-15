@@ -15,13 +15,14 @@ struct QuestionsModel {
         self.createQuestions()
     }
     
-    // TODO: Called upon init
     fileprivate mutating func createQuestions() {
         let firstQuestion = BoolQuestion(question: "Sasha is cute", correctAnswer: true)
-//        let secondQuestion = MultiQuestion(question: "When did WWI start?", type: .multiple, correctAnswer: "1914")
+        let secondQuestion = BoolQuestion(question: "Mosquitoes have teeth", correctAnswer: true)
         let thirdQuestion = BoolQuestion(question: "WWII began in 1938", correctAnswer: false)
+        let fourthQuestion = BoolQuestion(question: "Strawberries are the only fruit with the seeds on the outside", correctAnswer: true)
         
-        [firstQuestion, thirdQuestion].forEach { question in
+        // TODO: Map?
+        [firstQuestion, secondQuestion, thirdQuestion, fourthQuestion].forEach { question in
             self.boolQuestions.append(question)
         }        
     }

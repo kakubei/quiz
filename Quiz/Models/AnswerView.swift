@@ -10,17 +10,6 @@ import UIKit
 import Cartography
 
 class AnswerView: UIView {
-    
-//    @IBOutlet weak var answerLabel: UILabel!
-    
-//    var answerString: String? {
-//        didSet {
-//            guard let answerLabel = self.answerLabel else {
-//                return
-//            }
-//            answerLabel.text = answerString
-//        }
-//    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,9 +18,6 @@ class AnswerView: UIView {
     }
     
     private func configureUI() {
-        // This uses the UIView extension
-        self.addTapGestureHandler(target: self, action: #selector(dismissView))
-        
         self.layer.cornerRadius = 50
     }
     
@@ -62,9 +48,5 @@ class AnswerView: UIView {
             answerLabel.centerX == answerView.centerX
             answerLabel.centerY == answerView.centerY
         }
-    }
-    
-    @objc func dismissView() {
-        self.removeFromSuperview()
     }
 }

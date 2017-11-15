@@ -19,7 +19,11 @@ class ViewController: UIViewController, Dismissable {
     @IBOutlet weak var answerView: AnswerView!
     
     let questionsModel = QuestionsModel()
-    var currentQuestion: BoolQuestion!
+    var currentQuestion: BoolQuestion! {
+        didSet {
+            self.questionLabel.text = currentQuestion.question
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +34,6 @@ class ViewController: UIViewController, Dismissable {
     // TODO: Move this to a model
     private func configureUI() {
         self.currentQuestion = self.questionsModel.boolQuestions.first
-        self.questionLabel.text = currentQuestion?.question
         
         self.view.addTapGestureHandler(target: self, action: #selector(dismissView))
         
@@ -38,7 +41,8 @@ class ViewController: UIViewController, Dismissable {
     }    
     
     @objc func dismissView() {
-        self.answerView.dismissView()
+        self.nextQuestion()
+        self.answerView.isHidden = true
     }
     
     
@@ -73,7 +77,7 @@ class ViewController: UIViewController, Dismissable {
             self.questionLabel.alpha = 0
         }, completion: { _ in
             UIView.animate(withDuration: 0.5, animations: {
-                self.questionLabel.text = self.questionsModel.boolQuestions[nextIndex].question
+                self.currentQuestion = self.questionsModel.boolQuestions[nextIndex]
                 self.questionLabel.alpha = 1.0
             })
         })

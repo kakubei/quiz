@@ -43,7 +43,7 @@ struct BoolQuestion: BoolQuestionable {
     
     // We can show friendly faces answer or just the text
     func showAnswer(for answer: Bool, friendly: Bool = true) -> String {
-        let answerString: AnswerString = self.correctAnswer == answer ? .correct : .incorrect
+        let answerString: AnswerString = answer ? .correct : .incorrect
         return friendly ? answerString.friendly : answerString.rawValue
     }
 }
