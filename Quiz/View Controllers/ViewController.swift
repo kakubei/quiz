@@ -53,9 +53,8 @@ class ViewController: UIViewController, Dismissable {
     }
     
     
-    @IBAction func buttonTapped(_ sender: AnswerButton) {
+    @IBAction func answerButtonTapped(_ sender: AnswerButton) {
         let answer: Bool = currentQuestion.validateAnswer(sender.boolValue)
-//        let answer: Bool = currentQuestion?.correctAnswer == sender.boolValue
         currentQuestion.answered = true
         questionsModel.updateScore(withAnswer: answer)
         
