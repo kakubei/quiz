@@ -12,8 +12,6 @@ import SwiftyAttributes
 class ViewController: UIViewController, Dismissable {
 
     @IBOutlet weak var questionLabel: UILabel!
-    @IBOutlet weak var trueButton: TrueButton!
-    @IBOutlet weak var falseButton: FalseButton!
     @IBOutlet weak var totalQuestionsLabel: UILabel!
     
     @IBOutlet weak var answerView: AnswerView!
@@ -38,8 +36,6 @@ class ViewController: UIViewController, Dismissable {
     
     // TODO: Move this to a model
     private func configureUI() {
-        
-        
         currentQuestion = questionsModel.boolQuestions.first
         
         view.addTapGestureHandler(target: self, action: #selector(dismissView))
@@ -68,14 +64,35 @@ class ViewController: UIViewController, Dismissable {
     }
     
     @objc func answerSwiped(_ gesture: UISwipeGestureRecognizer) {
-        let answer: Bool = gesture.direction == .right ? true : false
-        processAnswer(answer)
+        let answer: Bool = gesture.direction == .up ? true : false
+        
+        animateSwipedView(gesture.direction) {
+            self.processAnswer(answer)
+        }
     }
     
-    @IBAction func answerButtonTapped(_ sender: AnswerButton) {
-//        processAnswer(sender.boolValue)
+    /**
+     Slightly moves whole view in the direction of the swipe and back
+     Shoud be an extension of a view conforming to a protocol
+     */
+    private func animateSwipedView(_ direction: UISwipeGestureRecognizerDirection, completion: @escaping EmptyCompletion) {
+        let amount: CGFloat = 30
+        let duration: Double = 0.3
+        
+        let swipeAmount: CGFloat = direction == .up ? -amount : amount
+        let start = CGAffineTransform(translationX: 0, y: swipeAmount)
+        let end = CGAffineTransform(translationX: 0, y: 0)
+        
+        UIView.animate(withDuration: duration, animations: {
+            self.view.transform = start
+        }, completion: { _ in
+            UIView.animate(withDuration: duration, animations: {
+                self.view.transform = end
+                completion()
+            })
+        })
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == scoreSegue {
             guard let destinationVC = segue.destination as? ScoreViewController else {

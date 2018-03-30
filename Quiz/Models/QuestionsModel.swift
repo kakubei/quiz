@@ -8,6 +8,8 @@
 
 import Foundation
 
+typealias EmptyCompletion = () -> Void
+
 struct QuestionsModel {
     var boolQuestions: [BoolQuestion] = []
     
