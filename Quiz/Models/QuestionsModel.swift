@@ -10,13 +10,15 @@ import Foundation
 
 struct QuestionsModel {
     var boolQuestions: [BoolQuestion] = []
+    
     var score: Double = 0 {
         didSet {
-            let totalQuestions = Double(self.boolQuestions.count)
-            let percentage: Double = (self.score / totalQuestions) * 100
+            let totalQuestions = Double(boolQuestions.count)
+            let percentage: Double = (score / totalQuestions) * 100
             self.scorePercentage = String(percentage)
         }
     }
+    
     var scorePercentage: String = "0"
     
     init() {
@@ -35,7 +37,7 @@ struct QuestionsModel {
         }        
     }
     
-    func currentQuestionLabel(index: Int) -> String {
+    func setTotalQuestionsLabel(index: Int) -> String {
         let totalQuestions = self.boolQuestions.count
         // NOTE: Don't change this to send nextIndex because it won't work for the first question
         let indexToDisplay = index + 1

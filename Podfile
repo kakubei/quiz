@@ -6,7 +6,7 @@ target 'Quiz' do
   use_frameworks!
 
   # Pods for Quiz
-  pod 'Cartography'
+  pod 'SwiftyAttributes'
 
   pod 'Reveal-SDK', '~> 10', :configurations => ['Debug']
 

@@ -8,6 +8,17 @@
 
 import UIKit
 
+/**
+ Base class for all answer buttons.
+ - properties:
+    - boolValue
+ 
+ These 2 buttons inherit from it:
+ 
+ `TrueButton`
+ 
+ `FalseButton`
+*/
 class AnswerButton: UIButton {
     var mark: String = ""
     var boolValue: Bool = true
@@ -44,7 +55,6 @@ class TrueButton: AnswerButton {
 }
 
 class FalseButton: AnswerButton {
-    
     override func commonInit() {
         super.commonInit()
         self.backgroundColor = Colours.redColour

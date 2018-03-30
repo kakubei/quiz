@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Cartography
+import SwiftyAttributes
 
 class ViewController: UIViewController, Dismissable {
 
@@ -21,7 +21,10 @@ class ViewController: UIViewController, Dismissable {
     var questionsModel = QuestionsModel()
     var currentQuestion: BoolQuestion! {
         didSet {
-            questionLabel.text = currentQuestion.question
+            let style = NSMutableParagraphStyle()
+            style.lineSpacing = 0.5
+            let attributedText = currentQuestion.question.withAttributes([.paragraphStyle(style)])
+            questionLabel.attributedText = attributedText
         }
     }
     
@@ -35,12 +38,16 @@ class ViewController: UIViewController, Dismissable {
     
     // TODO: Move this to a model
     private func configureUI() {
+        
+        
         currentQuestion = questionsModel.boolQuestions.first
         
         view.addTapGestureHandler(target: self, action: #selector(dismissView))
         view.addSwipeLeftGestureHandler(target: self, action: #selector(nextQuestion))
+        view.addSwipeUpGestureHandler(target: self, action: #selector(answerSwiped(_:)))
+        view.addSwipeDownGestureHandler(target: self, action: #selector(answerSwiped(_:)))
         
-        totalQuestionsLabel.text = questionsModel.currentQuestionLabel(index: 0)
+        totalQuestionsLabel.text = questionsModel.setTotalQuestionsLabel(index: 0)
     }    
     
     @objc func dismissView() {
@@ -52,13 +59,21 @@ class ViewController: UIViewController, Dismissable {
         answerView.isHidden = true
     }
     
+    private func processAnswer(_ answer: Bool) {
+        let validatedAnswer: Bool = currentQuestion.validateAnswer(answer)
+        currentQuestion.answered = true
+        questionsModel.updateScore(withAnswer: validatedAnswer)
+        
+        showAnswer(validatedAnswer)
+    }
+    
+    @objc func answerSwiped(_ gesture: UISwipeGestureRecognizer) {
+        let answer: Bool = gesture.direction == .right ? true : false
+        processAnswer(answer)
+    }
     
     @IBAction func answerButtonTapped(_ sender: AnswerButton) {
-        let answer: Bool = currentQuestion.validateAnswer(sender.boolValue)
-        currentQuestion.answered = true
-        questionsModel.updateScore(withAnswer: answer)
-        
-        showAnswer(answer)
+//        processAnswer(sender.boolValue)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -89,7 +104,7 @@ class ViewController: UIViewController, Dismissable {
             return
         }
         
-        totalQuestionsLabel.text = questionsModel.currentQuestionLabel(index: index)
+        totalQuestionsLabel.text = questionsModel.setTotalQuestionsLabel(index: index)
         
         let nextIndex = index + 1
         showQuestionWithIndex(nextIndex)
@@ -102,7 +117,7 @@ class ViewController: UIViewController, Dismissable {
         }, completion: { _ in
             UIView.animate(withDuration: 0.5, animations: {
                 self.currentQuestion = self.questionsModel.boolQuestions[nextIndex]
-                self.totalQuestionsLabel.text = self.questionsModel.currentQuestionLabel(index: nextIndex)
+                self.totalQuestionsLabel.text = self.questionsModel.setTotalQuestionsLabel(index: nextIndex)
                 self.questionLabel.alpha = 1.0
                 self.totalQuestionsLabel.alpha = 1.0
             })
