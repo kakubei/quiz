@@ -8,7 +8,7 @@
 
 import Foundation
 
-class QuestionsModel {
+struct QuestionsModel {
     var boolQuestions: [BoolQuestion] = []
     var score: Double = 0 {
         didSet {
@@ -23,7 +23,7 @@ class QuestionsModel {
         self.createQuestions()
     }
     
-    fileprivate func createQuestions() {
+    fileprivate mutating func createQuestions() {
         let firstQuestion = BoolQuestion(question: "Sasha is cute", correctAnswer: true)
         let secondQuestion = BoolQuestion(question: "Mosquitoes have teeth", correctAnswer: true)
         let thirdQuestion = BoolQuestion(question: "WWII began in 1938", correctAnswer: false)
@@ -48,7 +48,7 @@ class QuestionsModel {
         return allQuestionsViewed
     }
     
-    func updateScore(withAnswer correctAnswer: Bool) {
+    mutating func updateScore(withAnswer correctAnswer: Bool) {
         if correctAnswer {
             self.score += 1
         }

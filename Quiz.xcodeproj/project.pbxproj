@@ -135,7 +135,6 @@
 			children = (
 				CA6AFA781FB7136600F02E71 /* Quiz */,
 				CA6AFA8D1FB7136600F02E71 /* QuizTests */,
-				CA6AFA771FB7136600F02E71 /* Products */,
 				B43EAC57D650F0D7570A8A3A /* Pods */,
 				3B79F0F0EA741896424C1BE8 /* Frameworks */,
 			);
@@ -148,6 +147,7 @@
 				CA6AFA8A1FB7136600F02E71 /* QuizTests.xctest */,
 			);
 			name = Products;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		CA6AFA781FB7136600F02E71 /* Quiz */ = {
@@ -169,6 +169,7 @@
 		CA6AFA8D1FB7136600F02E71 /* QuizTests */ = {
 			isa = PBXGroup;
 			children = (
+				CA6AFA771FB7136600F02E71 /* Products */,
 				CA6AFA8E1FB7136600F02E71 /* QuizTests.swift */,
 				CA6AFA901FB7136600F02E71 /* Info.plist */,
 			);

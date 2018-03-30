@@ -18,10 +18,10 @@ class ViewController: UIViewController, Dismissable {
     
     @IBOutlet weak var answerView: AnswerView!
     
-    let questionsModel = QuestionsModel()
+    var questionsModel = QuestionsModel()
     var currentQuestion: BoolQuestion! {
         didSet {
-            self.questionLabel.text = currentQuestion.question
+            questionLabel.text = currentQuestion.question
         }
     }
     
@@ -30,35 +30,36 @@ class ViewController: UIViewController, Dismissable {
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        self.configureUI()
+        configureUI()
     }
     
     // TODO: Move this to a model
     private func configureUI() {
-        self.currentQuestion = self.questionsModel.boolQuestions.first
+        currentQuestion = questionsModel.boolQuestions.first
         
-        self.view.addTapGestureHandler(target: self, action: #selector(dismissView))
-        self.view.addSwipeLeftGestureHandler(target: self, action: #selector(nextQuestion))
+        view.addTapGestureHandler(target: self, action: #selector(dismissView))
+        view.addSwipeLeftGestureHandler(target: self, action: #selector(nextQuestion))
         
-        self.totalQuestionsLabel.text = self.questionsModel.currentQuestionLabel(index: 0)
+        totalQuestionsLabel.text = questionsModel.currentQuestionLabel(index: 0)
     }    
     
     @objc func dismissView() {
         // TODO: Don't advance to next question unless user has answered
-        guard self.currentQuestion.answered else {
+        guard currentQuestion.answered else {
             return
         }
-        self.nextQuestion()
-        self.answerView.isHidden = true
+        nextQuestion()
+        answerView.isHidden = true
     }
     
     
     @IBAction func buttonTapped(_ sender: AnswerButton) {
-        let answer: Bool = currentQuestion?.correctAnswer == sender.boolValue
-        self.currentQuestion.answered = true
-        self.questionsModel.updateScore(withAnswer: answer)
+        let answer: Bool = currentQuestion.validateAnswer(sender.boolValue)
+//        let answer: Bool = currentQuestion?.correctAnswer == sender.boolValue
+        currentQuestion.answered = true
+        questionsModel.updateScore(withAnswer: answer)
         
-        self.showAnswer(answer)
+        showAnswer(answer)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -67,32 +68,32 @@ class ViewController: UIViewController, Dismissable {
                 return
             }
             
-            destinationVC.score = self.questionsModel.scorePercentage
+            destinationVC.score = questionsModel.scorePercentage
         }
     }
     
     fileprivate func showAnswer(_ answer: Bool) {
-        guard let friendlyAnswer = self.currentQuestion?.showAnswer(for: answer) else {
+        guard let friendlyAnswer = currentQuestion?.showAnswer(for: answer) else {
             return
         }
         
-        self.answerView.configureAnswerView(with: friendlyAnswer)
+        answerView.configureAnswerView(with: friendlyAnswer)
     }
     
     @objc private func nextQuestion() {
-        if self.questionsModel.isLastQuestion(currentQuestion) {
+        if questionsModel.isLastQuestion(currentQuestion) {
             performSegue(withIdentifier: scoreSegue, sender: self)
             return
         }
         
-        guard let index = self.questionsModel.boolQuestions.index(of: currentQuestion) else {
+        guard let index = questionsModel.boolQuestions.index(of: currentQuestion) else {
             return
         }
         
-        self.totalQuestionsLabel.text = self.questionsModel.currentQuestionLabel(index: index)
+        totalQuestionsLabel.text = questionsModel.currentQuestionLabel(index: index)
         
         let nextIndex = index + 1
-        self.showQuestionWithIndex(nextIndex)
+        showQuestionWithIndex(nextIndex)
     }
     
     private func showQuestionWithIndex(_ nextIndex: Int) {

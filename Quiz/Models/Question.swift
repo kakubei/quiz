@@ -28,25 +28,9 @@ protocol Questionable {
 
 protocol BoolQuestionable: Questionable {
     var correctAnswer: Bool { get }
-    func validateAnswer(_ answer: Bool) -> Bool
-    func showAnswer(for answer: Bool, friendly: Bool) -> String
 }
 
-struct BoolQuestion: BoolQuestionable {
-    let question: String
-    let type: QuestionType = .bool
-    let correctAnswer: Bool
-    var answered: Bool = false
-    
-    init(question: String, correctAnswer: Bool) {
-        self.question = question
-        self.correctAnswer = correctAnswer
-    }
-    
-    func validateAnswer(_ answer: Bool) -> Bool {
-        return self.correctAnswer == answer
-    }
-    
+extension Questionable {
     // We can show friendly faces answer or just the text
     func showAnswer(for answer: Bool, friendly: Bool = true) -> String {
         let answerString: AnswerString = answer ? .correct : .incorrect
@@ -54,11 +38,35 @@ struct BoolQuestion: BoolQuestionable {
     }
 }
 
-extension BoolQuestion: Equatable { }
-
-func ==(lhs: BoolQuestion, rhs: BoolQuestion) -> Bool {
-    return lhs.question == rhs.question
+// Default values for this protocol
+extension BoolQuestionable {
+    var type: QuestionType {
+        return .bool
+    }
+    
+    func validateAnswer(_ answer: Bool) -> Bool {
+        return answer == self.correctAnswer
+    }
 }
+
+struct BoolQuestion: BoolQuestionable {
+    let question: String
+    let correctAnswer: Bool
+    var answered: Bool = false
+    
+    init(question: String, correctAnswer: Bool) {
+        self.question = question
+        self.correctAnswer = correctAnswer
+    }
+}
+
+extension BoolQuestion: Equatable {
+    static func ==(lhs: BoolQuestion, rhs: BoolQuestion) -> Bool {
+        return lhs.question == rhs.question
+    }
+}
+
+
 
 // TODO: Use Generics for this, instead of Quiestonable item, have a generic item
 //protocol MultipleQuestionable {
