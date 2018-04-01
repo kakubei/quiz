@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Cartography
+//import Cartography
 
 class AnswerView: UIView {
 
@@ -37,16 +37,16 @@ class AnswerView: UIView {
         
         let preferredWidth: CGFloat = 350
         
-        constrain(self.superview!, self, answerLabel) { superview, answerView, answerLabel in
-            answerView.width == preferredWidth
-            answerView.height == preferredWidth
-            answerView.centerX == superview.centerX
-            answerView.centerY == superview.centerY
-
-            answerLabel.width == answerView.width
-            answerLabel.height == answerView.height
-            answerLabel.centerX == answerView.centerX
-            answerLabel.centerY == answerView.centerY
-        }
+//        constrain(self.superview!, self, answerLabel) { superview, answerView, answerLabel in
+//            answerView.width == preferredWidth
+//            answerView.height == preferredWidth
+//            answerView.centerX == superview.centerX
+//            answerView.centerY == superview.centerY
+//
+//            answerLabel.width == answerView.width
+//            answerLabel.height == answerView.height
+//            answerLabel.centerX == answerView.centerX
+//            answerLabel.centerY == answerView.centerY
+//        }
     }
 }

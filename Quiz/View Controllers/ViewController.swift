@@ -76,17 +76,19 @@ class ViewController: UIViewController, Dismissable {
      Shoud be an extension of a view conforming to a protocol
      */
     private func animateSwipedView(_ direction: UISwipeGestureRecognizerDirection, completion: @escaping EmptyCompletion) {
-        let amount: CGFloat = 30
+        let amount: CGFloat = 20
         let duration: Double = 0.3
         
         let swipeAmount: CGFloat = direction == .up ? -amount : amount
         let start = CGAffineTransform(translationX: 0, y: swipeAmount)
         let end = CGAffineTransform(translationX: 0, y: 0)
+        let initialVelocity: CGFloat = 0.7
+        let spring: CGFloat = 0.4
         
-        UIView.animate(withDuration: duration, animations: {
+        UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: spring, initialSpringVelocity: initialVelocity, animations: {
             self.view.transform = start
         }, completion: { _ in
-            UIView.animate(withDuration: duration, animations: {
+            UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: spring, initialSpringVelocity: initialVelocity, animations: {
                 self.view.transform = end
                 completion()
             })
